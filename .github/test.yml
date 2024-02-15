@@ -1,35 +1,33 @@
-name: Execução de testes regressivos
-
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
-  schedule:
-    -cron:'0 9,11,15,18 * * 1,2,3,4,5'
-
-jobs: 
-  e2e-test:
-  rund-on: ubuntu-latest
-
-  steps:
-    -name: Checkout projeto
-     uses:actions/checkout@v2
-
-
-  -name: Setup Node.js enviroment
-   uses: actions/setup-node@2.2.0
-   with:
-     node-version: ${{ matrix.node-version}}
-
-  -name: Install dependecies
-   run: npm install   
-
-  -name: Setup Playwright
-   uses: microsoft/playwright-github-action@v1
-
-  -name: Run CodeceptJS tests
-   run: npx codeceptjs run
-
-
-
+name: Cypress Tests
+on: [push]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    # Runs tests in parallel with matrix strategy https://docs.cypress.io/guides/guides/parallelization
+    # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
+    # Also see warning here https://github.com/cypress-io/github-action#parallel
+    strategy:
+      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
+      matrix:
+        containers: [1, 2] # Uses 2 parallel instances
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress run
+        # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
+        uses: cypress-io/github-action@v6
+        with:
+          # Starts web server for E2E tests - replace with your own server invocation
+          # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
+          start: npm start
+          wait-on: 'http://localhost:3000' # Waits for above
+          # Records to Cypress Cloud 
+          # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
+          record: true
+          parallel: true # Runs test in parallel using settings above
+        env:
+          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
+          # in GitHub repo → Settings → Secrets → Actions
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

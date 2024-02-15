@@ -8,11 +8,8 @@ class telaInicial{
     inputText(dado){
         cy.get(elem.inputToDo)
         .type(dado)
-        
-        cy.get(elem.inputToDo)
         .type('{enter}')
     }
-    
 
     validarInput(texto){
         cy.get(elem.inputToDo)
