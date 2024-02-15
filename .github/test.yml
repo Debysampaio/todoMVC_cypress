@@ -1,0 +1,35 @@
+name: Execução de testes regressivos
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  schedule:
+    -cron:'0 9,11,15,18 * * 1,2,3,4,5'
+
+jobs: 
+  e2e-test:
+  rund-on: ubuntu-latest
+
+  steps:
+    -name: Checkout projeto
+     uses:actions/checkout@v2
+
+
+  -name: Setup Node.js enviroment
+   uses: actions/setup-node@2.2.0
+   with:
+     node-version: ${( matrix.node-version)}
+
+  -name: Install dependecies
+   run: npm install   
+
+  -name: Setup Playwright
+   uses: microsoft/playwright-github-action@v1
+
+  -name: Run CodeceptJS tests
+   run: npx codeceptjs run
+   
+
+
