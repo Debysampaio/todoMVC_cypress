@@ -19,9 +19,4 @@
   "devDependencies": {
     "cypress": "^13.6.4"
   }
-
-  "scripts": {
-    "build": "webpack --config webpack.config.js"
-  }
-  
 }
