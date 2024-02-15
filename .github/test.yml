@@ -20,7 +20,7 @@ jobs:
   -name: Setup Node.js enviroment
    uses: actions/setup-node@2.2.0
    with:
-     node-version: ${( matrix.node-version)}
+     node-version: ${{ matrix.node-version}}
 
   -name: Install dependecies
    run: npm install   
@@ -30,6 +30,6 @@ jobs:
 
   -name: Run CodeceptJS tests
    run: npx codeceptjs run
-   
+
 
 
