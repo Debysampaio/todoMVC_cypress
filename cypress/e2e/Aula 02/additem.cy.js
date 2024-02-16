@@ -13,12 +13,12 @@ describe('Adcionar itens da minha lista de ToDO', () => {
     });
 
     // forma nao tao performatica porem que tambem da certo//
-    it.skip('Adcionar um item na lista', () => {
-        telaInicial.inputText('Dado1')
-        telaInicial.inputText('Dado2')
-        telaInicial.inputText('Dado3')
-        
-    });
+    // it.skip('Adcionar um item na lista', () => {
+    //     telaInicial.inputText('Dado1')
+    //     telaInicial.inputText('Dado2')
+    //     telaInicial.inputText('Dado3')
+    // });
+    
 
     it('Adcionar mais de um item a lista', () => {
         var todoItens = ['Maça', 'Banana', 'Cenoura']
