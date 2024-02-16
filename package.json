@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Debysampaio/TestingCypress.git"
+    "url": "git+https://github.com/Debysampaio/todoMVC_cypress.git"
   },
   "author": "Débora Sampaio",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Debysampaio/TestingCypress/issues"
+    "url": "https://github.com/Debysampaio/todoMVC_cypress/issues"
   },
-  "homepage": "https://github.com/Debysampaio/TestingCypress#readme",
+  "homepage": "https://github.com/Debysampaio/todoMVC_cypress#readme",
   "devDependencies": {
     "cypress": "^13.6.4"
   }
