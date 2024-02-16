@@ -26,6 +26,7 @@ class telaInicial{
 
     validarSizeToDo(numero){
         cy.get(concluirItem.validarListaItens)
+        .should('have.length', numero)
     }
 
     concluirItem(){

@@ -11,4 +11,4 @@ describe('Acessar a pagina do todoMVC', () => {
     telaInicial.inputText('Débora')
 
   })
-})
+});
